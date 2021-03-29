@@ -24,17 +24,9 @@ $age = $_POST["age"];
 $profile = $_POST["profile"];
 $other = $_POST["other"];
 
-//2. DB接続します xxxにDB名を入力する
-//ここから作成したDBに接続をしてデータを登録します xxxxに作成したデータベース名を書きます
-// mamppの方は
-// $pdo = new PDO('mysql:dbname=xxx;charset=utf8;host=localhost', 'root', 'root');
-
-try {
-    $pdo = new PDO('mysql:dbname=kadai0331_db;charset=utf8;host=localhost', 'root', '');
-} catch (PDOException $e) {
-    exit('DbConnectError:'.$e->getMessage());
-}
-
+//2.  DB接続します xxxにDB名を入れます(funcs.php)でdb_connect関数を作成してる
+include("funcs.php");
+$pdo = db_connect();
 
 //３．データ登録SQL作成 //ここにカラム名を入力する
 //xxx_table(テーブル名)はテーブル名を入力します
