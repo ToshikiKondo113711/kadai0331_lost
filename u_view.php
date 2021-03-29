@@ -13,14 +13,7 @@ try {
 //.SELECT * FROM register_func WHERE $user_id=:user_id;
 $sql = "SELECT * FROM register_func WHERE user_id=:user_id";
 $stmt = $pdo->prepare($sql);
-$stmt->bindValue(':user_id',$user_id.PDO::PARAM_INT);
-// $stmt->bindValue(':username', $username, PDO::PARAM_STR);
-// $stmt->bindValue(':email', $email, PDO::PARAM_STR);  
-// $stmt->bindValue(':password', $password, PDO::PARAM_STR);  
-// $stmt->bindValue(':sex', $sex, PDO::PARAM_STR); 
-// $stmt->bindValue(':age', $age, PDO::PARAM_INT); 
-// $stmt->bindValue(':profile', $profile, PDO::PARAM_STR); 
-// $stmt->bindValue(':other', $other, PDO::PARAM_STR); 
+$stmt->bindValue(':user_id',$user_id,PDO::PARAM_INT);
 $status = $stmt->execute();
 
 //.データ表示
@@ -58,18 +51,19 @@ if($status==false){
 <!-- Head[End] -->
 
 <!-- Main[Start] -->
-<!-- ここからinsert.phpにデータを送ります -->
-<form method="post" action="insert.php">
+
+<form method="post" action="update.php">
   <div class="jumbotron">
    <fieldset>
     <legend>掲示板</legend>
-     <label>ニックネーム：<input type="text" name="username" value='<?=$row["username"]?>'></label><br>
-     <label>メールアドレス：<input type="text" name="email" value='<?=$row["email"]?>'></label><br>
-     <label>パスワード：<input type="password" name="password" value='<?=$row["password"]?>'></label><br>
-	 <label>性別：<input type="text" name="sex" value='<?=$row["sex"]?>'></label><br>
-	 <label>年齢：<input type="text" name="age" value='<?=$row["age"]?>'></label><br>
-	 <label>自己紹介：<textArea name="profile" rows="4" cols="40"><?=$row["profile"]?></textArea></label><br>
+     <label>ニックネーム：<input type="text" name="username" value="<?=$row["username"]?>"></label><br>
+     <label>メールアドレス：<input type="text" name="email" value="<?=$row["email"]?>"></label><br>
+     <label>パスワード：<input type="password" name="password" value="<?=$row["password"]?>"></label><br>
+	   <label>性別：<input type="text" name="sex" value="<?=$row["sex"]?>"></label><br>
+     <label>年齢：<input type="text" name="age" value="<?=$row["age"]?>"></label><br>
+  	 <label>自己紹介：<textArea name="profile" rows="4" cols="40"><?=$row["profile"]?></textArea></label><br>
      <label>その他情報：<textArea name="other" rows="2" cols="20"><?=$row["other"]?></textArea></label><br>
+     <input type="hidden" nema=user_id value="<?=$row["user_id"]?>" >
      <input type="submit" value="送信">
     </fieldset>
   </div>
