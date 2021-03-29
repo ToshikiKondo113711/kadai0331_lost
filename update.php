@@ -9,12 +9,10 @@ $age      = $_POST["age"];
 $profile  = $_POST["profile"];
 $other    = $_POST["other"];
 
-//2.DB接続
-try {
-  $pdo = new PDO('mysql:dbname=kadai0331_db;charset=utf8;host=localhost','root','');
-} catch (PDOException $e) {
-exit('データベースに接続できませんでした。'.$e->getMessage());
-}
+
+//2.DB接続します xxxにDB名を入れます(funcs.php)でdb_connect関数を作成してる
+include("funcs.php");
+$pdo = db_connect();
 
 //3.UPDATE gs_an_table SET ....; で更新(bindValue)
 $sql = "UPDATE register_func SET username=:username,email=:email, password=:password,
