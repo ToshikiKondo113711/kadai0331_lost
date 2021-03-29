@@ -22,10 +22,15 @@ if($status==false){
   while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
     $view .= "<p>";
     // リンク作成
-    $view .='<a herf = "u_view.php?user_id='.$result["user_id"].'">';
-    $view .="更新";
+    $view .='<a href = "u_view.php?user_id='.$result["user_id"].'">';
+    $view .="[更新]";
     $view .= '</a>';
-    $view .= $result["user_id"]." - ".$result["username"]." - ".$result["email"]." - ".$result["password"]." - ".$result["sex"]." - ".$result["age"]." - ".$result["profile"]." - ".$result["other"]." - ".$result["indate"];
+    $view .= ' ';
+    $view .='<a href = "delete.php?user_id='.$result["user_id"].'">';
+    $view .="[削除]";
+    $view .= '</a>';
+    $view .= ' ';
+    $view .= $result["username"]." - ".$result["email"]." - ".$result["password"]." - ".$result["sex"]." - ".$result["age"]." - ".$result["profile"]." - ".$result["other"]." - ".$result["indate"];
     $view .= "</p>";
    
   }
