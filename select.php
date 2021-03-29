@@ -1,10 +1,10 @@
 <?php
-//1.  DB接続します xxxにDB名を入れます
-try {
-$pdo = new PDO('mysql:dbname=kadai0331_db;charset=utf8;host=localhost','root','');
-} catch (PDOException $e) {
-  exit('データベースに接続できませんでした。'.$e->getMessage());
-}
+session_start();
+include("funcs.php");
+loginCheck();
+
+//1.  DB接続します xxxにDB名を入れます(funcs.php)でdb_connect関数を作成してる
+$pdo = db_connect();
 
 //２．データ登録SQL作成
 //作ったテーブル名を書く場所  xxxにテーブル名を入れます
@@ -57,6 +57,7 @@ if($status==false){
     <div class="container-fluid">
       <div class="navbar-header">
       <a class="navbar-brand" href="index.php">ユーザ登録</a>
+      <a class="navbar-brand" href="logout.php">ログアウト</a>
       </div>
     </div>
   </nav>
