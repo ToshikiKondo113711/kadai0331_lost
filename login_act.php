@@ -1,14 +1,11 @@
 <?php
 session_start();
+include("funcs.php");
 $email = $_POST["email"];
 $password = $_POST["password"];
 
-//1. 接続します
-try {
-  $pdo = new PDO('mysql:dbname=kadai0331_db;charset=utf8;host=localhost','root','');
-} catch (PDOException $e) {
-  exit('DbConnectError:'.$e->getMessage());
-}
+//1.  DB接続します xxxにDB名を入れます(funcs.php)でdb_connect関数を作成してる
+$pdo = db_connect();
 
 //２．データ登録SQL作成
 $sql = "SELECT * FROM register_func WHERE email=:email AND password=:password";
@@ -36,6 +33,7 @@ if( $val["user_id"] != "" ){
   header("Location: select.php");
 }else{
   //Login処理NGの場合login.phpへ遷移
+//   alart("メールアドレスまたはパスワードが存在しないか、異なります。");
   header("Location: login.php");
 }
 //処理終了
